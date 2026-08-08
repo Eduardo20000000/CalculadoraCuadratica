@@ -12,7 +12,7 @@ function resolver(a, b, c){
     x1 = x1/s
     x2= x2/s
 
-    response += `El valor de X en la ecuación ${a}x² + (${b}x) + (${c}) es ${x1} y ${x2}\n`
+    response += `El valor de X en la ecuación ${a}x² + ${b}x + ${c} es ${x1} y ${x2}\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
    
 }
 function getParabola(a, b, c){
@@ -36,7 +36,7 @@ let b = Number(document.getElementById('B').value)
 let c = Number(document.getElementById('C').value)
 if(!a) return alert("No se puede resolver la cuadratica")
     let result = fx(x, a, b, c)
-document.getElementById('ecuation').innerHTML = `${a}*${x}² + (${b}*${x}) + (${c}) = ${result}`
+document.getElementById('ecuation').innerHTML = `${a}*${x}² + ${b}*${x} + ${c} = ${result}`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
 })
 let btn = document.getElementById('calc')
 btn.addEventListener('click', () => {
@@ -56,7 +56,7 @@ if(discriminante > 0) response += "La ecuación tiene DOS soluciones\n"
 
 if(discriminante >= 0 ) canSolve = true
 
-document.getElementById('ecuation').innerHTML = `<h2>${a}x² + (${+b}x) + (${c})`
+document.getElementById('ecuation').innerHTML = `<h2>${a}x² + ${+b}x + ${c}`.replaceAll("+ (-", "- ").replaceAll("+ -", "-")
 if(canSolve) resolver(a, b, c)
 getParabola(a, b, c)
 
