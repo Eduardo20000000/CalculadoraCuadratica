@@ -11,7 +11,7 @@ if(getModo > 2 || getModo < 1) return getModo.value = 0, alert("Modo inválido")
     if(getModo == 2) {
         let e = Number(document.getElementById('e').value)
         let d = Number(document.getElementById('d').value)
-        let expresion = `(x² + ${e})(x² + ${d}) = x² + (${e+d}x) + ${e*d}`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
+        let expresion = `(x + ${e})(x + ${d}) = x² + (${e+d}x) + ${e*d}`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
         document.getElementById('desfac').innerHTML = `<h2>${expresion}</h2>`
     }
 })
