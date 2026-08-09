@@ -12,12 +12,14 @@ function resolver(a, b, c){
     x1 = x1/s
     x2= x2/s
 
-    response += `El valor de X en la ecuación ${a}x² + ${b}x + ${c} es ${x1} y ${x2}\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
+    response += `El valor de X y las interseccion en las absisas (x) en la ecuacion: ${a}x² + ${b}x + ${c} es (${x1}, 0) y (${x2}, 0)\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
+    response += `El corte en Y de la parabola se encuentra en (0,${c})\n`
    
 }
 function getParabola(a, b, c){
 if(a<0) response += "La parabola de la ecuación tiene una orientación negativa :(\n"
 if(a>0) response += "La parabola de la ecuación tiene una orientación positiva :)\n"
+
 let verticeX = -b/2*a
 let verticeY = fx(verticeX, a, b, c)
  let discriminante = Math.pow(b, 2) - 4*a*c
