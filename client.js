@@ -26,18 +26,20 @@ function drawPoint(x, y, text) {
     ctx.fillText(text, px + 8, py - 8);
 }
 
-function resolver(a, b, c){
-     let discriminante = Math.pow(b, 2) - 4*a*c
-//
-    let x1 = -b + (Math.sqrt(discriminante))
+function resolver(a, b, c, canSolve=true){   
+  let discriminante = Math.pow(b, 2) - 4*a*c
+   let x1 = -b + (Math.sqrt(discriminante))
     let x2 = -b - (Math.sqrt(discriminante))
-    console.log(x1)
+    if(canSolve){
+//
+ 
     let s = 2*a
     x1 = x1/s
     x2= x2/s
 
-    response += `El valor de X y las interseccion en las absisas (x) en la ecuacion: ${a}x² + ${b}x + ${c} es (${x1}, 0) y (${x2}, 0)\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
+    response += `El valor de X y las interseccion en las absisas (x) en la ecuacion: ${a}x² + ${b}x + ${c} ${discriminante > 0 ? `son (${x1}, 0) y (${x2}, 0)` : `es (${x1}, 0)`}\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
     response += `El corte en Y de la parabola se encuentra en (0,${c})\n`
+    }
    const canvas = document.getElementById("graph");
     const ctx = canvas.getContext("2d");
 
@@ -91,8 +93,12 @@ function resolver(a, b, c){
     ctx.strokeStyle = "blue";
     ctx.lineWidth = 3;
     ctx.stroke();
-    drawPoint(x1, 0, `(${x1}, 0)`);
+    if(discriminante > 0){
+drawPoint(x1, 0, `(${x1}, 0)`);
 drawPoint(x2, 0, `(${x2}, 0)`);
+    }else {
+        drawPoint(x1, 0, `(${x1})`)
+    }
 drawPoint(0, c, `(0, ${c})`);
 
 
@@ -111,7 +117,9 @@ let verticeY = fx(verticeX, a, b, c)
  response += `El punto ${a > 0 ? "Mínimo" : "Máximo"} de la parabola está ubicado en (${verticeX}, ${verticeY})\n`
 }
 function fx(x, a, b ,c){
-    return a*Math.pow(x, 2) + b*x + c
+    let s = a*Math.pow(x, 2) + b*x + c
+    drawPoint(x, s, `(${x},${s})`)
+    return s
 }
 let entrarFunc = document.getElementById('function').addEventListener('click', () => {
     let x = Number(document.getElementById('x').value)
@@ -124,7 +132,7 @@ if(!a) return alert("No se puede resolver la cuadratica")
 document.getElementById('ecuation').innerHTML = `${a}*${x}² + ${b}*${x} + ${c} = ${result}`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
 })
 let btn = document.getElementById('calc')
-btn.addEventListener('click', () => {
+function btnFunction(){
 
 
 let a = Number(document.getElementById('A').value)
@@ -147,7 +155,26 @@ getParabola(a, b, c)
 
 document.getElementById('result').innerText = response
 response = ""
-
-
+}
+btn.addEventListener('click', () => {
+btnFunction()
 })
 
+let elements = [
+    document.getElementById('A'),
+    document.getElementById('B'),
+    document.getElementById('C'),
+    document.getElementById('calc'),
+]
+elements.forEach((e, index) => {
+    e.addEventListener('keydown', (event) => {
+          if (event.key !== "Enter") return;
+        event.preventDefault()
+        if(e.id == 'calc'){
+            e.click()
+            return
+        }
+        let next = elements[index + 1]
+        next.focus()
+    })
+})
