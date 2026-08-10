@@ -2,6 +2,30 @@
 let original = "Ax² + Bx + c"
 
 let response = ""
+function drawPoint(x, y, text) {
+    const canvas = document.getElementById("graph");
+    const ctx = canvas.getContext("2d");
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const scale = 30;
+    const originX = width / 2;
+    const originY = height / 2;
+    const px = originX + x * scale;
+    const py = originY - y * scale;
+
+    // Punto
+    ctx.beginPath();
+    ctx.arc(px, py, 5, 0, Math.PI * 2);
+    ctx.fillStyle = "red";
+    ctx.fill();
+
+    // Número
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText(text, px + 8, py - 8);
+}
+
 function resolver(a, b, c){
      let discriminante = Math.pow(b, 2) - 4*a*c
 //
@@ -14,8 +38,67 @@ function resolver(a, b, c){
 
     response += `El valor de X y las interseccion en las absisas (x) en la ecuacion: ${a}x² + ${b}x + ${c} es (${x1}, 0) y (${x2}, 0)\n`.replaceAll("+ (-", "-").replaceAll("+ -", "- ")
     response += `El corte en Y de la parabola se encuentra en (0,${c})\n`
-   
+   const canvas = document.getElementById("graph");
+    const ctx = canvas.getContext("2d");
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Limpiar
+    ctx.clearRect(0, 0, width, height);
+
+    // Sistema de coordenadas
+    const scale = 30;
+    const originX = width / 2;
+    const originY = height / 2;
+
+    // Fondo
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, width, height);
+
+    // Ejes
+    ctx.beginPath();
+
+    ctx.moveTo(0, originY);
+    ctx.lineTo(width, originY);
+
+    ctx.moveTo(originX, 0);
+    ctx.lineTo(originX, height);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Función
+    ctx.beginPath();
+
+    for (let px = 0; px <= width; px++) {
+
+        const x = (px - originX) / scale;
+
+        const y = a * x ** 2 + b * x + c;
+
+        const py = originY - y * scale;
+
+        if (px === 0) {
+            ctx.moveTo(px, py);
+        } else {
+            ctx.lineTo(px, py);
+        }
+        
+    }
+
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    drawPoint(x1, 0, `(${x1}, 0)`);
+drawPoint(x2, 0, `(${x2}, 0)`);
+drawPoint(0, c, `(0, ${c})`);
+
+
+
 }
+
 function getParabola(a, b, c){
 if(a<0) response += "La parabola de la ecuación tiene una orientación negativa :(\n"
 if(a>0) response += "La parabola de la ecuación tiene una orientación positiva :)\n"
