@@ -40,19 +40,23 @@ function decimalAFraccion(decimal) {
     c/a = resultado1
 
     */
-   let b = -resultado
-   /*
-   -b/a = resultado /*a
-   -b=resultado*a / /resultado
-   -b/resultado = a
+let found = true
+    
+   if(Number.isInteger(resultado)){
+    /*Asumimos a =1*/
+    b = -resultado/1
+    c = resultado1/1
+    a=1
+    if(-b/a !== resultado && c/a !== resultado1){
+found = false
+for (let i=0; i<50; i++){
+if(resultado>0 && resultado1>0){
+// a negativo
+}
 
-   */
-   let a = -b/resultado
+}
+    }
 
-   let c = resultado1/a
-
-   console.log(-b/c == resultado && c/a == resultado1)
-   console.log(-b/c, c/a)
    
 
 
