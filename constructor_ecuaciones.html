@@ -1,0 +1,65 @@
+<h2>Construye ecuaciones a partir de la suma y multiplicación de sus resultados!</h2>
+
+
+<div id="ecuations" style="display: flex;">
+    <h2>X1 + x2 = </h2> 
+    <input id="x" placeholder="Resultado"></input> 
+    <h2 id="result">=</h2>
+    <br>
+</div>
+<br>
+<div style="display: flex;">
+     <h2>X1 * x2 = </h2> 
+    <input id="mult" placeholder="Resultado"></input> 
+    <h2 id="result1"></h2>
+</div>
+<button onclick="calcular()">Calcular</button>
+   <script>
+   function mcd(a, b) {
+  return b ? mcd(b, a % b) : a;
+}
+
+function decimalAFraccion(decimal) {
+  if (Number.isInteger(decimal)) return [`${decimal}`, `${1}`]
+  let cadena = decimal.toString();
+  let cifrasDecimales = cadena.split('.')[1].length;
+  let denominador = Math.pow(10, cifrasDecimales);
+  let numerador = decimal * denominador;
+
+  let divisor = mcd(numerador, denominador);
+
+  return [`${numerador / divisor}`, `${denominador / divisor}`]
+}
+
+
+    function calcular(){
+    let resultado = Number(document.getElementById('x').value.replace(",", "."))
+    let resultado1 = Number(document.getElementById('mult').value.replace(",", "."))
+    /*
+    -b/a = resultado
+    c/a = resultado1
+
+    */
+   let b = -resultado
+   /*
+   -b/a = resultado /*a
+   -b=resultado*a / /resultado
+   -b/resultado = a
+
+   */
+   let a = -b/resultado
+
+   let c = resultado1/a
+
+   console.log(-b/c == resultado && c/a == resultado1)
+   console.log(-b/c, c/a)
+   
+
+
+    document.getElementById('result').innerHTML = `<h2>= ${a}x² ${b == 0 ?"" : `+ ${b}x`} ${c == 0 ? "" : `+ ${c}`}</h2>`.replace("+ -", "-")
+
+    
+
+}
+   </script>
+   
