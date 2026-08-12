@@ -35,32 +35,26 @@ function decimalAFraccion(decimal) {
     function calcular(){
     let resultado = Number(document.getElementById('x').value.replace(",", "."))
     let resultado1 = Number(document.getElementById('mult').value.replace(",", "."))
-    /*
-    -b/a = resultado
-    c/a = resultado1
-
-    */
-let found = true
-    
-   if(Number.isInteger(resultado)){
-    /*Asumimos a =1*/
-    b = -resultado/1
-    c = resultado1/1
-    a=1
-    if(-b/a !== resultado && c/a !== resultado1){
-found = false
-for (let i=0; i<50; i++){
-if(resultado>0 && resultado1>0){
-// a negativo
-}
-
-}
-    }
-
    
 
+    /*
 
-    document.getElementById('result').innerHTML = `<h2>= ${a}x² ${b == 0 ?"" : `+ ${b}x`} ${c == 0 ? "" : `+ ${c}`}</h2>`.replace("+ -", "-")
+x + y = resultado
+x*y =resultado1
+x = -y+resultado
+*/
+
+let numero = -resultado1
+let y = numero/(resultado-1)
+/*
+x + y = resultado /-y
+x = resultado - y
+
+*/
+let x = resultado - y
+console.log("x1:"+x + " x2" +y)
+
+  document.getElementById('result').innerHTML = `<h2>= ${a}x² ${b == 0 ?"" : `+ ${b}x`} ${c == 0 ? "" : `+ ${c}`}</h2>`.replace("+ -", "-")
 
     
 
