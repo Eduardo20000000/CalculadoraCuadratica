@@ -1,0 +1,89 @@
+<h2>Construye formulas cubicas!</h2>
+
+
+<div id="ecuations" style="display: flex;">
+    <h2>x1 = </h2> 
+    <input id="x" placeholder="valor x"></input> 
+    <h2 id="result">=</h2>
+    <br>
+</div>
+<br>
+<div style="display: flex;">
+     <h2>X2= </h2> 
+    <input id="x2" placeholder="valor x1"></input> 
+    <h2 id="result1"></h2>
+</div>
+<br>
+<div style="display: flex;">
+     <h2>X3= </h2> 
+    <input id="x3" placeholder="valor x2"></input> 
+    <h2 id="result2"></h2>
+</div>
+<br>
+<div style="display: flex;">
+     <h2>A = </h2> 
+    <input id="A" placeholder="Valor de A"></input> 
+</div>
+<br>
+<h2 id="cubica">Valor de la cubica = </h2>
+<button onclick="calcular()" id="calc">Calcular</button>
+   <script>
+    let docs = document.querySelectorAll('input')
+    docs.forEach((doc, i) => {
+        
+        doc.addEventListener('keydown', (event) => {
+            if(event.key !== "Enter") return 
+                    event.preventDefault();
+
+            let next = docs[i+1]
+            if(focus)
+       next.focus()
+        })
+    })
+  
+
+    function calcular(){
+    let x = -document.getElementById('x').value
+    let x2 = -document.getElementById('x2').value
+    let x3 = -document.getElementById('x3').value
+    let a = document.getElementById('A').value
+    let reeconstruccion = `a(x-${x})(x-${x2})(x-${x3}) = f(x)`
+    let equisCuadrado;
+    let equis;
+    document.getElementById('cubica').innerText = `${reeconstruccion}\n`
+  
+    equis = x2+x
+
+        document.getElementById('cubica').innerText = `Aplicando distrubución entre unos y ceros...\n`
+
+    
+    let sum = x-x2
+    
+    equisCuadrado = x3 + equis
+    equis = equis*x3 + x2*x
+     document.getElementById('cubica').innerText += `${a}(x³ + ${equisCuadrado}x² + ${equis}x + ${x*x2*x3})\n`.replace("+ -", "-")
+        document.getElementById('cubica').innerText += `Multiplicando por ${a}...\n`
+
+    document.getElementById('cubica').innerText += `${a}x³ + ${equisCuadrado*a}x² + ${equis*a}x + ${x*x2*x3*a})\n`.replace("+ -", "-")
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+</script>
+
+
+   

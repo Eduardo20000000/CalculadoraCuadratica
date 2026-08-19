@@ -104,6 +104,23 @@ drawPoint(0, c, `(0, ${c})`);
 
 
 }
+function calcularIreal(a, b, c){
+ let discriminante = Math.pow(b, 2) - 4*a*c
+ let expresion = math.sqrt(discriminante)
+ let str = expresion.toString()
+   let s = 2*a
+
+   let x1 = -b/s + ` + ${str}`
+    let x2 = -b/s + `- ${str}`
+
+  
+
+        response += `Resultado ireal 1: ${x1}\n`
+        response += `Resultado ireal 2: ${x2}\n`
+
+
+
+}
 
 function getParabola(a, b, c){
 if(a<0) response += "La parabola de la ecuación tiene una orientación negativa :(\n"
@@ -143,7 +160,7 @@ let canSolve = false
 if(!a) return alert("No puedes tener una cuadrática sin A")
 let discriminante = Math.pow(b, 2) - 4*a*c
 
-if(discriminante < 0) response += "La ecuación no tiene soluciones\n"
+if(discriminante < 0) response += "La ecuación no tiene soluciones REALES\n"
 if(discriminante == 0) response += "La ecuación contiene solo UNA solución\n"
 if(discriminante > 0) response += "La ecuación tiene DOS soluciones\n"
 
@@ -151,6 +168,8 @@ if(discriminante >= 0 ) canSolve = true
 
 document.getElementById('ecuation').innerHTML = `<h2>${a}x² + ${+b}x + ${c}`.replaceAll("+ (-", "- ").replaceAll("+ -", "-")
 if(canSolve) resolver(a, b, c)
+    else calcularIreal(a, b, c)
+
 getParabola(a, b, c)
 
 document.getElementById('result').innerText = response
