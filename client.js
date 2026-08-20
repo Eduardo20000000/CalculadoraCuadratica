@@ -110,8 +110,8 @@ function calcularIreal(a, b, c){
  let str = expresion.toString()
    let s = 2*a
 
-   let x1 = -b/s + ` + ${str}`
-    let x2 = -b/s + `- ${str}`
+   let x1 = -b + ` + ${str0}/${s}`
+    let x2 = -b + `- ${str}/${s}`
 
   
 
