@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construye tu propio sistema de ecuaciones</title>
+    <div style="display:flex">
+        <input id="indice_1" type="number"></input><h2>X + </h2>  <input id="indice_2" type="number"></input><h2>Y = </h2>  <input id="result" type="number">
+        <br>
+
+    </div>
+    <br>
+    <div style="display: flex;">
+        <input id="indice_3" type="number"></input><h2>X + </h2>  <input id="indice_4" type="number"></input><h2>Y = </h2>  <input id="result2" type="number">
+
+
+    </div>
+    <br>
+    <button id="calc">Calcular</button>
+    <br>
+    <h2 id="text">El resultado del sistema de ecuaciones es: </h2>
+
+
+    
+</head>
+    <script>
+        document.getElementById('calc').addEventListener('click', () => {
+            let indice1 = parseInt(document.getElementById('indice_1').value)
+            let indice2 = parseInt(document.getElementById('indice_2').value)
+            let indice3 = parseInt(document.getElementById('indice_3').value)
+            let indice4 = parseInt(document.getElementById('indice_4').value)
+            let resultado = parseInt(document.getElementById('result').value)
+            let resultado2 = parseInt(document.getElementById('result2').value)
+            let dividir = false
+
+            let arreglo = {a: indice1, b: indice2, c: indice3, d: indice4, resultado, resultado2}
+           /*
+           2x 
+       
+            */
+            let initial = arreglo.c*(-arreglo.b) //distributiva Y
+            if(indice1 !== 1){
+                dividir = true
+            }
+            
+            let second = arreglo.c*arreglo.resultado // distributiva normal
+            let third = initial + arreglo.d // juntando Y
+            if(dividir) third = initial+arreglo.d*arreglo.a
+            let final = (arreglo.resultado2-second)/third//dividmos por third (Y) para despejarla
+            if(dividir){
+                arreglo.resultado2 = arreglo.resultado2 * arreglo.a
+                final = (arreglo.resultado2-second)/third
+            }
+            let resultado_y = final
+
+            let secondTerm = arreglo.b*resultado_y
+            let resultado_x = (arreglo.resultado-secondTerm)/arreglo.a
+            document.getElementById('text').innerHTML = `<h2>El resultado de las ecuaciones es: X = ${resultado_x} e Y = ${resultado_y}</h2>`
+
+            /*
+            x + secondTerm = resultado
+            x = (secondTerm - resultado)/arreglo.a
+            x 
+            
+            */
+
+        })
+    </script>
+</html>
