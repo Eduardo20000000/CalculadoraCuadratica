@@ -56,6 +56,14 @@
             let secondTerm = arreglo.b*resultado_y
             let resultado_x = (arreglo.resultado-secondTerm)/arreglo.a
             document.getElementById('text').innerHTML = `<h2>El resultado de las ecuaciones es: X = ${resultado_x} e Y = ${resultado_y}</h2>`
+            document.getElementById('text').innerHTML += `<h2>${resultado_x} * ${indice1} + ${resultado_y} * ${indice2} = ${resultado_x*indice1+resultado_y*indice2}</h2>`
+
+            document.getElementById('text').innerHTML += `<h2>${resultado_x*indice1} + ${resultado_y*indice2} = ${resultado_x*indice1+resultado_y*indice2}</h2>`
+                        document.getElementById('text').innerHTML += `<h2>${resultado_x} * ${indice3} + ${resultado_y} * ${indice4} = ${resultado_x*indice3+resultado_y*indice4}</h2>`
+
+                        document.getElementById('text').innerHTML += `<h2>${resultado_x*indice3} + ${resultado_y*indice4} = ${resultado_x*indice3+resultado_y*indice4}</h2>`
+
+
 
             /*
             x + secondTerm = resultado
